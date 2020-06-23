@@ -72,7 +72,7 @@ namespace pokerioAPI.Classes {
         //accessible because access is achieved 
         //through the GetCard() method, hence the
         //private access modifier.
-        private List<Card> cards = new List<Card>();
+        public List<Card> cards = new List<Card>();
         private int Size = 52;
         //private bool[] CardMap = Enumerable.Repeat(true, 52).ToArray(); 
         //Default constructor, which creates and 
