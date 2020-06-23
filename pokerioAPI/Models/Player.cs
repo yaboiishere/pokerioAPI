@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,12 +13,12 @@ namespace pokerioAPI.Models {
     public class Player {
         public string Username { get; set; }
         public string Password { get; set; }
-        public int Balance { get; set; }
-        public bool IsAllin { get; set; }
-        public int CurrentWinnings { get; set; }
-        public bool IsDealer { get; set; }
-        public bool IsInGame { get; set; }
-        public BlindTypes Blind { get; set; }
+        public int Balance = 100;
+        public bool IsAllin = false;
+        public int CurrentWinnings = 0;
+        public bool IsDealer = false;
+        public bool IsInGame = false;
+        public BlindTypes Blind = 0;
         public bool WantsToJoin = false;
     }
 }

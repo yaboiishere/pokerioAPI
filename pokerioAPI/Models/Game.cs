@@ -16,11 +16,15 @@ namespace pokerioAPI.Models {
         public int Pot { get; set; }
         public List<int> Sidepot = new List<int>(0);
         public int potNum = 0;
-        public Deck deck;
+        public Deck deck = new Deck();
         public Round round = new Round();
         private int lastSmallBlindId = 0;
         private int SmallBlind { get; set; }
         private int roundCount = 1;
+
+        public Game() {
+            round = new Round(ref deck);
+        }
 
         public void AddPlayer(Player player) {
             players.Append<Player>(player);
@@ -42,7 +46,6 @@ namespace pokerioAPI.Models {
             q = players.Where(p => p.IsInGame).ToList();
             q.ForEach(que => players.Add(que));
             if(players.Count() > 1) {
-                deck = new Deck();
                 //Deal cards to players TBI
 
                 //

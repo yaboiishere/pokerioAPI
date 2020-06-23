@@ -121,7 +121,9 @@ namespace pokerioAPI.Classes {
             Random a = new Random();
             int tmp = a.Next(Size);
             Size--;
-            return cards[tmp];
+            Card c = GetCard(tmp);
+            cards = cards.Where(t => t != null).ToList();
+            return c;
         }
 
         //The shuffle method works by creating a

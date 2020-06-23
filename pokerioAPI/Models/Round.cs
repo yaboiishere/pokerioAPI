@@ -16,8 +16,8 @@ namespace pokerioAPI.Models {
         public long Id { get; set; }
         public Game ParentGame;
         public Card[] Flop = new Card[3];
-        public Card Turn { get; set; }
-        public Card River { get; set; }
+        public Card Turn;
+        public Card River;
 
         public Round(ref Deck d) {
             for(int i= 0;i<3;i++) {
