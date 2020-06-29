@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace pokerioAPI.Models {
         Big,
         Small
     }
-    public class Player {
+    public class Player : IdentityUser {
         public string Username { get; set; }
         public string Password { get; set; }
         public int Balance = 100;
@@ -20,5 +21,10 @@ namespace pokerioAPI.Models {
         public bool IsInGame = false;
         public BlindTypes Blind = 0;
         public bool WantsToJoin = false;
+        public Hand hand = new Hand();
+
+        public Player(string uname, string pword) {
+
+        }
     }
 }

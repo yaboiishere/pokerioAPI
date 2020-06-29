@@ -12,9 +12,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using pokerioAPI.Models;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
-
+using Microsoft.AspNet.Identity;
+using Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin;
 
 namespace pokerioAPI {
+
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
@@ -46,6 +51,21 @@ namespace pokerioAPI {
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+        }
+    }
+    public class IdentityConfig {
+        public void Configuration(IAppBuilder app) {
+            app.CreatePerOwinContext(() => new TodoContext());
+            app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
+            app.CreatePerOwinContext<RoleManager<AppRole>>((options, context) =>
+                new RoleManager<AppRole>(
+                    new RoleStore<AppRole>(context.Get<TodoContext>(""))));
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Home/Login"),
             });
         }
     }

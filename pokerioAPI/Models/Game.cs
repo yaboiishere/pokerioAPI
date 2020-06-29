@@ -50,6 +50,7 @@ namespace pokerioAPI.Models {
 
                 //
                 round = new Round(ref deck);
+                Deal();
                 Pot = 0;
                 Sidepot.Clear();
                 Sidepot.Add(0);
@@ -66,6 +67,10 @@ namespace pokerioAPI.Models {
 
         }
 
+        public void Deal() {
+            players.ForEach(p => p.hand = new Hand(ref deck));
+            
+        }
         public Card[] Flop() {
 
             return round.Flop;
